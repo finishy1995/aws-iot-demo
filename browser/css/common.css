@@ -1,0 +1,76 @@
+@font-face {
+	font-family: 'Glyphicons Halflings';
+	src: url('../fonts/glyphicons-halflings-regular.eot');
+	src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+
+body {
+	font-family: "Arial", Microsoft YaHei, sans-serif;
+}
+
+small {
+	margin-left: 30px;
+}
+
+
+.SmartLightBlock, .SmartTempBlock {
+	margin-bottom: 30px;
+}
+
+.SmartLightName, .SmartTempName {
+	text-align:center;
+	font-size:24px;
+}
+
+.SmartLightList, .SmartTempList {
+	margin-top: 30px;
+}
+
+.SmartLight {
+	height: 320px;
+}
+
+.SmartLightOff {
+	text-align: center;
+	font-size: 24px;
+	color: red;
+	line-height: 320px;
+}
+
+.SmartLightForm {
+	margin-top: 20px;
+}
+
+.SmartLightBtn {
+	float: right;
+}
+
+
+.SmartTempName {
+	margin-bottom: 20px;
+}
+
+.SmartTempStatus {
+	line-height: 300px;
+	font-size: 20px;
+}
+
+.SmartTempAuto {
+	margin-top: 30px;
+}
+
+.SmartTempAutoButton {
+	font-size: 40px;
+	color: #286090;
+}
+
+#SmartTempAutoOnInput, #SmartTempAutoOffInput {
+	width: 50px;
+}
+
+
+.page-tail {
+	margin-top: 20px;
+	margin-bottom: 50px;
+}

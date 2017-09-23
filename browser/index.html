@@ -1,0 +1,155 @@
+<DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="David Wang 王元恺">
+	<meta name="date" content="2017-09-12">
+
+	<title>AWS IoT 演示 [AWS IoT Light DEMO]</title>
+
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/common.css" rel="stylesheet">
+
+	<script src="./js/aws-iot-sdk-browser-bundle.js"></script>
+	<script src="./js/bundle.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div class="page-header">
+					<h1>智能家居管理平台  <small>AWS IoT Demo</small></h1>
+				</div>
+			</div>
+		</div>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<h3>智能彩灯</h3>
+				<div class="row clearfix SmartLightList">
+					<div class="col-md-6 column SmartLightBlock">
+						<p class="SmartLightName">彩灯 1 号</p>
+						<div id="SmartLight1" class="SmartLight">
+							<p class="SmartLightOff" id="SmartLight1Off">OFF</p>
+						</div>
+						<form class="form-horizontal SmartLightForm" id="SmartLight1Form" role="form">
+							<div class="form-group" id="SmartLight1FormR">
+								<label for="SmartLight1FormRLabel" class="col-sm-1 control-label">R</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="SmartLight1FormRInput">
+								</div>
+								<div class="col-sm-4">
+									<button type="button" class="btn btn-primary btn-lg btn-sm SmartLightBtn" onclick="closeSmartLight(0);">关闭彩灯</button>
+								</div>
+							</div>
+							<div class="form-group" id="SmartLight1FormG">
+								<label for="SmartLight1FormGLabel" class="col-sm-1 control-label">G</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="SmartLight1FormGInput">
+								</div>
+								<div class="col-sm-4">
+									<button type="button" class="btn btn-primary btn-lg btn-sm SmartLightBtn" onclick="changeSmartLightStatus(0);">更改颜色</button>
+								</div>
+							</div>
+							<div class="form-group" id="SmartLight1FormB">
+								<label for="SmartLight1FormBLabel" class="col-sm-1 control-label">B</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="SmartLight1FormBInput">
+								</div>
+								<div class="col-sm-4">
+									<button type="button" class="btn btn-primary btn-lg btn-sm SmartLightBtn" onclick="updateSmartLightStatusById(0);">刷新状态</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="col-md-6 column SmartLightBlock">
+						<p class="SmartLightName">彩灯 2 号</p>
+						<div id="SmartLight2" class="SmartLight">
+							<p class="SmartLightOff" id="SmartLight2Off">OFF</p>
+						</div>
+						<form class="form-horizontal SmartLightForm" id="SmartLight2Form" role="form">
+							<div class="form-group" id="SmartLight2FormR">
+								<label for="SmartLight2FormRLabel" class="col-sm-1 control-label">R</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="SmartLight2FormRInput">
+								</div>
+								<div class="col-sm-4">
+									<button type="button" class="btn btn-primary btn-lg btn-sm SmartLightBtn" onclick="closeSmartLight(1);">关闭彩灯</button>
+								</div>
+							</div>
+							<div class="form-group" id="SmartLight2FormG">
+								<label for="SmartLight2FormGLabel" class="col-sm-1 control-label">G</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="SmartLight2FormGInput">
+								</div>
+								<div class="col-sm-4">
+									<button type="button" class="btn btn-primary btn-lg btn-sm SmartLightBtn" onclick="changeSmartLightStatus(1);">更改颜色</button>
+								</div>
+							</div>
+							<div class="form-group" id="SmartLight2FormB">
+								<label for="SmartLight2FormBLabel" class="col-sm-1 control-label">B</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="SmartLight2FormBInput">
+								</div>
+								<div class="col-sm-4">
+									<button type="button" class="btn btn-primary btn-lg btn-sm SmartLightBtn" onclick="updateSmartLightStatusById(1);">刷新状态</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<hr/>
+			</div>
+		</div>
+
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<h3>智能温控</h3>
+				<div class="row clearfix SmartTempList">
+					<div class="col-md-12 column SmartTempBlock">
+						<p class="SmartTempName">温控 1 号</p>
+						<div class="col-md-4 column">
+							<img src="./img/airConditioning.jpeg" alt="空调" style="height: 300px;"/>
+						</div>
+						<div class="col-md-4 column">
+							<!-- <img src="./img/switch.jpeg" alt="开关" style="height: 300px;" onclick="changeAirCon();" /> -->
+							<button class="btn btn-primary btn-lg" type="button" onclick="changeAirCon();" style="margin-left: 100px; margin-top: 130px">开／关空调</button>
+						</div>
+						<div class="col-md-4 column">
+							<label class="SmartTempStatus">当前温度为： </label>
+							<label class="SmartTempStatus" id="SmartTempNumber">N/A</label>
+						</div>
+						<div class="col-md-12 column SmartTempAuto">
+							<span class="glyphicon glyphicon-plus SmartTempAutoButton" onclick="changeSmartTempAutoSpan(this);"></span>
+							<div id="SmartTempAutoOn" style="display: none">
+								<br />
+								<label style="margin-right: 10px">当温度大于 </label><input id="SmartTempAutoOnInput" /><label style="margin-left: 10px"> 自动打开温控降温。</label>
+							</div>
+							<div id="SmartTempAutoOff" style="display: none">
+								<br />
+								<label style="margin-right: 10px">当温度小于 </label><input id="SmartTempAutoOffInput" /><label style="margin-left: 10px"> 自动关闭温控升温。</label>
+							</div>
+							<div id="SmartTempAutoBtn" style="display: none">
+								<br />
+								<button class="btn btn-primary btn-lg btn-sm SmartLightBtn" type="button" onclick="submitSmartTempAuto();">确认更改</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr/>
+			</div>
+		</div>
+
+		<div class="row clearfix">
+			<div class="col-md-12 column page-tail">
+				<p>AWS IoT 是一款托管的云平台，使互联设备可以轻松安全地与云应用程序及其他设备交互。AWS IoT 可支持数十亿台设备和数万亿条消息，还能对这些消息进行处理并将其安全可靠地路由至 AWS 终端节点和其他设备。</p>
+				<p>想要了解更多？请访问： <a target="_blank" href="https://amazonaws-china.com/cn/iot-platform/">https://amazonaws-china.com/cn/iot-platform/</a></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

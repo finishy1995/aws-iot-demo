@@ -1,0 +1,16 @@
+{
+	"certs": {
+		"privateKey": "Your_Private_Key_Path",
+		"certificate": "Your_Cert_Key_Path",
+		"rootCA": "Your_RootCA_Key_Path"
+	},
+	"region": “AWS_Region_Id”,
+	"host": "AWS_Host_Endpoint",
+	"topic": “Topic_Name”,
+	"app": {
+		"delta": 0.75,
+		"publishInterval": 2000,
+		"statusInterval": 2000,
+		"thingName": “Thing_Name”
+	}
+}
